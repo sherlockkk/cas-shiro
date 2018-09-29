@@ -8,5 +8,7 @@ public class TempUtil {
         log.debug("--------------debug");
         log.info("--------------info");
         log.warn("-----------warn");
+        log.error("----------error");
+        log.trace("----------trace");
     }
 }
