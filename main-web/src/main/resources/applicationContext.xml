@@ -52,7 +52,7 @@
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager" p:entityManagerFactory-ref="entityManagerFactory"/>
 
     <!--配置支持注解的事务-->
-    <tx:annotation-driven/>
+    <tx:annotation-driven proxy-target-class="true"/>
 
     <!--配置SpringData-->
     <jpa:repositories base-package="com.sherlockkk.dao" transaction-manager-ref="transactionManager"

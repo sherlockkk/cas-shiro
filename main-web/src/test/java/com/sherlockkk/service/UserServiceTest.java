@@ -32,7 +32,7 @@ public class UserServiceTest {
 
     @Test
     public void test_findUserById(){
-        User user = userService.findUserById("2c90b3c2662a232301662a232bab0000");
+        User user = userService.findUserById("40288042662aba8e01662aba98940000");
         log.info(user.getUsername());
         System.err.println(user.getUsername());
     }
