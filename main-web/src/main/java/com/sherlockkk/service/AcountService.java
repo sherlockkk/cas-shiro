@@ -4,12 +4,14 @@ import com.sherlockkk.dao.AccountDao;
 import com.sherlockkk.domain.Account;
 import com.sherlockkk.serviceInterface.AcountServiceInterface;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Isolation;
-import org.springframework.transaction.annotation.Propagation;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
+
 import javax.annotation.Resource;
+import javax.persistence.RollbackException;
 
 
+@Transactional
 @Service
 public class AcountService implements AcountServiceInterface {
 
@@ -31,7 +33,8 @@ public class AcountService implements AcountServiceInterface {
         double newMoney = balance - money;
         accountDao.outMoney(name, newMoney);
     }
-    @Transactional
+
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public void transfer(String outName, String inName, double money) {
         try{

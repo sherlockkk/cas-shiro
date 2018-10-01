@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,7 +18,7 @@ import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:applicationContext.xml"})
-@Transactional
+//@Transactional
 public class AcountServiceTest {
 
     @Autowired
@@ -37,13 +38,13 @@ public class AcountServiceTest {
     }
 
     @Test
-//    @Rollback
+    @Transactional
     public void transMoney() {
         acountService.transfer("Tom", "Jerry", 200);
     }
 
     @Test
-    public void init(){
+    public void init() {
         Account tom = new Account();
         tom.setName("Tom");
         tom.setBalance(1000);
