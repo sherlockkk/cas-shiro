@@ -40,6 +40,7 @@
                 <prop key="hibernate.cache.region.factory_class">
                     org.hibernate.cache.ehcache.EhCacheRegionFactory
                 </prop>
+                <prop key="hibernate.connection.autocommit">false</prop>
                 <!-- 生成的数据表的列的映射策略 -->
                 <!--<prop key="hibernate.ejb.naming_strategy">org.hibernate.cfg.ImprovedNamingStrategy</prop>-->
                 <!--<prop key="net.sf.ehcache.configurationResourceName">ehcache.xml</prop>-->

@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 
-@Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT,rollbackFor = ArithmeticException.class)
+
 @Service
 public class AcountService implements AcountServiceInterface {
 
@@ -31,20 +31,25 @@ public class AcountService implements AcountServiceInterface {
         double newMoney = balance - money;
         accountDao.outMoney(name, newMoney);
     }
-
+    @Transactional
     @Override
     public void transfer(String outName, String inName, double money) {
-        Account account = accountDao.findAccountByName(outName);
-        double balance = account.getBalance();
-        double newMoney = balance - money;
-        accountDao.outMoney(outName, newMoney);
+        try{
+            Account account = accountDao.findAccountByName(outName);
+            double balance = account.getBalance();
+            double newMoney = balance - money;
+            accountDao.outMoney(outName, newMoney);
 
-        int i = 0 / 0;
+            int i = 0 / 0;
 
-        Account account1 = accountDao.findAccountByName(inName);
-        double balance1 = account1.getBalance();
-        double newMoney1 = balance1 + money;
-        accountDao.inMoney(inName, newMoney1);
+            Account account1 = accountDao.findAccountByName(inName);
+            double balance1 = account1.getBalance();
+            double newMoney1 = balance1 + money;
+            accountDao.inMoney(inName, newMoney1);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
 
 //        outMoney(outName, money);
 //        int i = 0 / 0;
