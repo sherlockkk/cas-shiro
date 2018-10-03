@@ -5,4 +5,6 @@ public interface AcountServiceInterface {
     void outMoney(String name, double money);
 
     void transfer(String outName, String inName, double money);
+
+    void transfer2(String outName, String inName);
 }

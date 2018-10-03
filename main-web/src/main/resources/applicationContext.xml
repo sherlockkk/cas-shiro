@@ -19,9 +19,7 @@
     />
 
     <!--指定JPA的适配器-->
-    <bean id="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"
-        p:databasePlatform="org.hibernate.dialect.MySQL5Dialect"
-    />
+    <bean id="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
 
     <!--JPA实体管理器工厂-->
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
@@ -50,12 +48,12 @@
     </bean>
 
     <!--配置事务管理器-->
-    <bean id="txManager" class="org.springframework.orm.jpa.JpaTransactionManager" p:entityManagerFactory-ref="entityManagerFactory"/>
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager" p:entityManagerFactory-ref="entityManagerFactory"/>
 
     <!--配置支持注解的事务-->
-    <tx:annotation-driven proxy-target-class="true" transaction-manager="txManager"/>
+    <tx:annotation-driven proxy-target-class="true" />
 
     <!--配置SpringData-->
-    <jpa:repositories base-package="com.sherlockkk.dao" transaction-manager-ref="txManager"
+    <jpa:repositories base-package="com.sherlockkk.dao" transaction-manager-ref="transactionManager"
                       entity-manager-factory-ref="entityManagerFactory"/>
 </beans>

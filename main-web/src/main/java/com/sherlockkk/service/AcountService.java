@@ -20,10 +20,11 @@ public class AcountService implements AcountServiceInterface {
 
     @Override
     public void inMoney(String name, double money) {
-        Account account = accountDao.findAccountByName(name);
-        double balance = account.getBalance();
-        double newMoney = balance + money;
-        accountDao.inMoney(name, newMoney);
+//        Account account = accountDao.findAccountByName(name);
+//        double balance = account.getBalance();
+//        double newMoney = balance + money;
+//        accountDao.inMoney(name, newMoney);
+        accountDao.inMoney(name);
     }
 
     @Override
@@ -31,32 +32,43 @@ public class AcountService implements AcountServiceInterface {
         Account account = accountDao.findAccountByName(name);
         double balance = account.getBalance();
         double newMoney = balance - money;
-        accountDao.outMoney(name, newMoney);
+        accountDao.outMoney(name);
     }
 
     @Transactional(rollbackFor = Exception.class)
     @Override
     public void transfer(String outName, String inName, double money) {
-        try{
-            Account account = accountDao.findAccountByName(outName);
-            double balance = account.getBalance();
-            double newMoney = balance - money;
-            accountDao.outMoney(outName, newMoney);
 
-            int i = 0 / 0;
 
-            Account account1 = accountDao.findAccountByName(inName);
-            double balance1 = account1.getBalance();
-            double newMoney1 = balance1 + money;
-            accountDao.inMoney(inName, newMoney1);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+
+//        try{
+//            Account account = accountDao.findAccountByName(outName);
+//            double balance = account.getBalance();
+//            double newMoney = balance - money;
+//            accountDao.outMoney(outName, newMoney);
+//
+//            int i = 0 / 0;
+//
+//            Account account1 = accountDao.findAccountByName(inName);
+//            double balance1 = account1.getBalance();
+//            double newMoney1 = balance1 + money;
+//            accountDao.inMoney(inName, newMoney1);
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
 
 
 //        outMoney(outName, money);
 //        int i = 0 / 0;
 //        inMoney(inName, money);
+    }
+
+    @Transactional
+    @Override
+    public void transfer2(String outName, String inName) {
+            accountDao.outMoney(outName);
+            int i = 0 / 0;
+            accountDao.inMoney(inName);
     }
 
 

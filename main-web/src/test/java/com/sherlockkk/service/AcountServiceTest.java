@@ -17,8 +17,9 @@ import javax.annotation.Resource;
 import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
+@Transactional
+@Rollback(value = false)
 @ContextConfiguration(locations = {"classpath:applicationContext.xml"})
-//@Transactional
 public class AcountServiceTest {
 
     @Autowired
@@ -38,9 +39,13 @@ public class AcountServiceTest {
     }
 
     @Test
-    @Transactional
     public void transMoney() {
         acountService.transfer("Tom", "Jerry", 200);
+    }
+
+    @Test
+    public void trans2(){
+        acountService.transfer2("Tom", "Jerry");
     }
 
     @Test
